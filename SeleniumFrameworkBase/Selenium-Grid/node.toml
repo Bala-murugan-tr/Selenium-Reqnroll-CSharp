@@ -1,0 +1,18 @@
+[node]
+
+# Hub URL for remote session registration
+hub = "http://192.168.1.6:4444"
+
+selenium-manager = true
+
+# Define required browser drivers; omitting this will load all available drivers from the machine
+driver-implementation = ["Chrome", "Firefox"]
+
+# Maximum number of concurrent browser sessions on this node
+max-sessions = 4
+
+# Prevent over-allocation if max-sessions exceeds available CPU cores
+override-max-sessions = false
+
+# Maximum idle time (in seconds) before inactive sessions are terminated
+session-timeout = 120

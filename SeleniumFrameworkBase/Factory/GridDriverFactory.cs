@@ -8,7 +8,7 @@ using SeleniumFrameworkBase.Enums;
 
 namespace SeleniumFrameworkBase.Factory;
 public static class GridDriverFactory {
-    public static WebDriver CreateDriver(BrowserType browser) {
+    public static WebDriver CreateDriver(BrowserType browser, string testcaseName) {
         DriverOptions options;
 
         switch (browser) {
@@ -21,6 +21,7 @@ public static class GridDriverFactory {
                 chrome.AddUserProfilePreference("plugins.always_open_pdf_externally", true);
                 chrome.AddExcludedArgument("enable-automation");
                 chrome.AddAdditionalOption("useAutomationExtension", false);
+                chrome.AddAdditionalOption("se:name", testcaseName);
 
                 if (FrameworkProperties.Headless)
                     chrome.AddArguments("--headless=new", "--window-size=1920,1080", "--disable-gpu",

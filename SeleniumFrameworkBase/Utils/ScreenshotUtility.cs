@@ -9,32 +9,6 @@ using System.Drawing.Imaging;
 
 namespace SeleniumFrameworkBase.Utils;
 internal static class ScreenshotUtility {
-
-    internal static Media getscreenshot(IWebDriver driver) {
-        var scaleFactor = 1.0;
-        Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-        using MemoryStream ms = new MemoryStream(screenshot.AsByteArray);
-        Bitmap original = new Bitmap(ms);
-        int width = (int)(original.Width * scaleFactor);
-        int height = (int)(original.Height * scaleFactor);
-
-        using (Bitmap resized = new Bitmap(width, height)) {
-            using (Graphics g = Graphics.FromImage(resized)) {
-                // Apply bilinear interpolation for smoother scaling
-                g.InterpolationMode = InterpolationMode.HighQualityBilinear;
-                g.SmoothingMode = SmoothingMode.HighQuality;
-                g.CompositingQuality = CompositingQuality.HighQuality;
-                g.DrawImage(original, 0, 0, width, height);
-            }
-
-            using (MemoryStream outputStream = new MemoryStream()) {
-                resized.Save(outputStream, ImageFormat.Jpeg); // Use "jpg" for smaller size
-                string base64 = Convert.ToBase64String(outputStream.ToArray());
-
-                return MediaEntityBuilder.CreateScreenCaptureFromBase64String(base64).Build();
-            }
-        }
-    }
     internal static Media Capture(IWebDriver driver, double scaleFactor = 1.0, long jpegQuality = 75L) {
         try {
             using var originalStream = new MemoryStream(((ITakesScreenshot)driver).GetScreenshot().AsByteArray);

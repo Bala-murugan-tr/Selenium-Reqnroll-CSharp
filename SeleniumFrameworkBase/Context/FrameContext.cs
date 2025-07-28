@@ -11,7 +11,6 @@ public class FrameContext {
     public static FrameContext Current => _context.Value!;
     public static void InitializeContext() => _context.Value = new FrameContext();
     public static void FlushContext() => _context.Value = null;
-
     public ScenarioContext ScenarioContext { get; set; } = null!;
     public FeatureContext FeatureContext { get; set; } = null!;
     public TestLogger Logger { get; set; } = null!;

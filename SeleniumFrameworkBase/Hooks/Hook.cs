@@ -114,10 +114,10 @@ public sealed class Hook {
         return FrameContext.Current!;
     }
 
-    private static void InitializeExecution(FrameContext fCtx, string reportfileName) {
+    private static void InitializeExecution(FrameContext fCtx, string testcaseName) {
         var startTime = DateTime.Now.TimeOfDay;
-        var Logger = new TestLogger(FrameContext.Current.ReportDir, reportfileName);
-        var Driver = BrowserFactory.GetDriver(Browser);
+        var Logger = new TestLogger(FrameContext.Current.ReportDir, testcaseName);
+        var Driver = BrowserFactory.GetDriver(Browser, testcaseName);
         fCtx.StartTime = startTime;
         fCtx.Driver = Driver;
         fCtx.Logger = Logger;
