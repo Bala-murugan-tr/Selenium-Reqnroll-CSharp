@@ -1,0 +1,11 @@
+[server]
+port = 4444
+
+[sessionQueue]
+sessionRequestTimeout = 30000
+sessionRetryInterval = 5000
+
+[distributor]
+maxSession = 8
+maxConcurrentSessions = 8  # Optional override
+
